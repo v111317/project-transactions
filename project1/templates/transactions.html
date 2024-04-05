@@ -1,0 +1,33 @@
+{% if form %}
+<!-- <form action ="" method="post" style="background-color:bisque"> -->
+<form action ="" method="post">
+    {% csrf_token %}
+    {{form.as_p}}
+    <input type="submit" value="Submit">
+</form>
+{% endif %}
+
+
+{% if transactions %}
+<table border="solid 1px">
+<tr>
+    <th>Date</th>
+    <th>Description</th>
+    <th>Transaction Type</th>
+    <th>Amount</th>
+    <th>Running Balance</th>
+</tr>
+
+{% for transaction in transactions %}
+<tr>
+    <td>{{ transaction.date}}</td>
+    <td>{{transaction.description}}</td>
+    <td>{{transaction.transaction_type}}</td>
+    <td>{{transaction.amount}}</td>
+    <td>{{transaction.running_balance}}</td>
+</tr>
+{% endfor %}
+</table>
+{% else %}
+<p>No transactions to display</p>
+{% endif %}
